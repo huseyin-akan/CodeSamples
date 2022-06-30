@@ -12,12 +12,8 @@ namespace CodeSamples
     class Program
     {
         static void Main(string[] args)
-        {
-            //Console.WriteLine(HackerRank.quickSort(new List<int> { 4, 5, 3, 7, 2 }));
-            var queries = new List<int> { 5, 9, 7, 8, 12, 5 }; 
-
-            Console.WriteLine(HackerRank.weightedUniformStrings("aaabbbbcccddd", queries));
-            
+        {            
+            Console.WriteLine(HackerRank.alternatingCharacters("AAAA"));                      
         }
     }
 }

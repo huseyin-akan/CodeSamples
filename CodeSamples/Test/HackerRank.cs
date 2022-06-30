@@ -1524,9 +1524,71 @@ namespace CodeSamples.Test
             return (strToCalc[0] - 'a' + 1 )*strToCalc.Length;
         }
 
-        public static void separateNumbers(string s)
+        public static void separateNumbers(string word)
         {
+            bool sequenceFound = false;
+            for (int i = 0; i < word.Length / 2; i++)
+            {
+                long numToCheck = Convert.ToInt64(word[..(i + 1)]);
+                long numToCheckInLoop = numToCheck;
 
+                sequenceFound = true;
+                for (int j = i+1; j < word.Length; j++)
+                {                    
+                    var nextNumLength = (numToCheckInLoop + 1).ToString().Length;
+                    
+                    if (j + nextNumLength > word.Length)
+                    {
+                        sequenceFound = false;
+                        break;
+                    }
+
+                    var numToCompare = Convert.ToInt64(word[j..(j+ nextNumLength)]);
+                    if (numToCompare - numToCheckInLoop != 1 )
+                    {
+                        sequenceFound = false;
+                        break;
+                    }
+                    else
+                    {
+                        numToCheckInLoop++;
+                        j += nextNumLength - 1;
+                    }
+                }
+                if (sequenceFound) {
+                    Console.WriteLine("YES "+ numToCheck);
+                    break;
+                }                
+            }
+
+            if (!sequenceFound) Console.WriteLine("NO");            
+        }
+
+        public static int alternatingCharacters(string word)
+        {
+            var result = 0;
+            for (int i = 0; i < word.Length; i++)
+            {
+                bool endReached = true;
+                for (int j = i+1; j < word.Length; j++)
+                {
+                    if (word[i] == word[j])
+                    {
+                        result++;
+                    }
+                    else
+                    {
+                        endReached = false;
+                        i = j-1;
+                        break;
+                    }
+                }
+                if (endReached)
+                {
+                    break;
+                }
+            }
+            return result;
         }
 
         public static long nearlySimilarRectangles2(List<List<long>> sides)
@@ -2188,6 +2250,113 @@ namespace CodeSamples.Test
         {
             public long Price { get; set; }
             public long Count { get; set; }
+        }
+
+        public static int maximizingXor(int left, int right)
+        {
+            var result = 0;
+
+            for (int i = left; i < right +1; i++)
+            {
+                for (int j = left +1; j < right +1; j++)
+                {
+                    if ((i ^ j) > result )
+                    {
+                        result = i ^ j;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public static void decentNumber(int number)
+        {
+            bool decentNumNotFound = true;            
+            int possibleDecentChecks = number / 3;
+            int countOfDecentChecks = 0;
+            DecentNumberResult result;
+
+            while (possibleDecentChecks > 0)
+            {
+                result = checkForDecentNum(number);
+
+                if (result.isDecentNumber)
+                {
+                    //we found a decent number we write the output and break here;
+                    writeDecentNumber(result, countOfDecentChecks);
+                    decentNumNotFound = false;
+                    break;                    
+                }
+                possibleDecentChecks--;
+                number -= 3;
+                countOfDecentChecks++;
+            }
+
+            if (decentNumNotFound)
+            {
+                Console.WriteLine(-1);
+            }
+        }
+
+        private static DecentNumberResult checkForDecentNum(int number )
+        {
+            int remainderOfThree = number % 3;
+            int countOfFiveDigits, countOfThreeDigits;
+
+            if(remainderOfThree == 0)
+            {
+                return new DecentNumberResult(true, number, 0);
+            }
+
+            int countOfTurns = number / 3;
+
+            for (int i = countOfTurns; i >= 0; i--)
+            {
+                countOfFiveDigits = i * 3;
+                countOfThreeDigits = number - countOfFiveDigits;
+
+                //then it is a decent number, so we return true
+                if (countOfThreeDigits % 5 == 0)
+                {
+                    return new DecentNumberResult(true, countOfFiveDigits, countOfThreeDigits);
+                }
+            }
+            return new DecentNumberResult(false, 0 ,0);
+        }
+
+        private static void writeDecentNumber(DecentNumberResult result, int countOfDecentChecks)
+        {
+            var sb = new StringBuilder();
+
+            for (int i = 0; i < countOfDecentChecks*3; i++)
+            {
+                sb.Append(3);
+            }
+
+            for (int i = 0; i < result.countOfFiveDigits; i++)
+            {
+                sb.Append(5);
+            }
+
+            for (int i = 0; i < result.countOfThreeDigits; i++)
+            {
+                sb.Append(3);
+            }
+            Console.WriteLine(sb.ToString());
+        }
+
+        private class DecentNumberResult
+        {
+            public DecentNumberResult(bool isDecentNumber, int countOfFiveDigits, int countOfThreeDigits)
+            {
+                this.isDecentNumber = isDecentNumber;
+                this.countOfFiveDigits = countOfFiveDigits;
+                this.countOfThreeDigits = countOfThreeDigits;
+            }
+            public bool isDecentNumber { get; set; }
+            public int countOfFiveDigits { get; set; }
+            public int countOfThreeDigits { get; set; }
         }
     }
 }
