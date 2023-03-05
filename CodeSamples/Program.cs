@@ -1,19 +1,12 @@
-﻿using CodeSamples.Collections_Arrays; 
-using CodeSamples.Number_Samples;
-using CodeSamples.String;
-using CodeSamples.Test;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System;
+using System.Text.RegularExpressions;
 
-namespace CodeSamples
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {            
-            Console.WriteLine(HackerRank.alternatingCharacters("AAAA"));                      
-        }
-    }
-}
+var pattern = @"[(]\d{3}[)]\s\d{3}\s\d{2}\s\d{2}";
+Regex regex = new(pattern);
+Console.WriteLine(regex.IsMatch("(554) 73991 14")); //true
+Console.WriteLine(regex.IsMatch("123AsV")); //false
+Console.WriteLine(regex.IsMatch("123AbC")); //false
+Console.WriteLine(regex.IsMatch("123ABCD")); //true
+
+
+

@@ -633,6 +633,175 @@ namespace CodeSamples.Test
             }
         }
 
+        public static long marcsCakewalk(List<int> calories)
+        {
+            calories = calories.OrderByDescending(x => x).ToList();
+            long result = 0;
+
+            for (int i = 0; i < calories.Count; i++)
+            {
+                result += (long) Math.Pow(2, (double)i)*calories[i] ;
+            }
+
+            return result;
+        }
+
+        public static string misereNim(List<int> s)
+        {
+            return "henüz metodu yazmayı bitirmedik";
+        }
+
+        public static string StringChallenge(string str)
+        {
+            var splittedWords = str.Split(" ");
+            var result = "";
+            var tmpString = "";
+            for (int i = 0; i < splittedWords.Length; i++)
+            {
+                tmpString = splittedWords[i][0].ToString().ToUpper() + splittedWords[i].Substring(1)+ " ";
+                result += tmpString;
+            }
+            result = result.Substring(0, result.Length - 1);
+            return result;
+        }
+
+        public static string MathChallenge(int num)
+        {
+            var maxValue = (int)(Math.Sqrt(int.MaxValue));
+            for (int i = 0; i < maxValue; i++)
+            {
+                if (Math.Pow(2, i) ==num)
+                {
+                    return "true";
+                }
+            }
+            return "false";
+        }
+
+        public static string MathChallenge(int num1, int num2)
+        {
+            var result = "";
+            var divisionBeforeDot = (int) (num1 / num2);
+            var beforeDot = divisionBeforeDot.ToString();
+            var divisionWithPrecision = (double)num1 / (double)num2 ;
+            var divisionAfterDot = ((int)(divisionWithPrecision * 10000)).ToString();
+
+            
+            for (int i = 1 ; i <= beforeDot.Length; i++)
+            {
+                if (i % 3 == 0) //we also add comma
+                {
+                    result += beforeDot[beforeDot.Length - i] + ",";
+                }
+                else //we dont add comma
+                {
+                    result += beforeDot[beforeDot.Length - i];
+                }
+            }
+
+            result = new string(result.Reverse().ToArray());
+            result += ".";
+            result += divisionAfterDot.Substring(divisionAfterDot.Length - 4);
+
+            if (result.StartsWith(","))
+            {
+                return result.Substring(1);
+            }
+
+            return result;
+        }
+
+        public static List<int> maximumPerimeterTriangle(List<int> sticks)
+        {
+            var result = new List<int>();
+            var resultFound = false;
+            sticks.Sort();
+            sticks.Reverse();
+
+            for (int i = 0; i < sticks.Count - 2; i++)
+            {
+                for (int j = i + 1; j < sticks.Count - 1; j++)
+                {
+                    for (int k = j + 1; k < sticks.Count; k++)
+                    {
+                        if (checkIfNonDegTriagleCanBeFormed(sticks[i], sticks[j], sticks[k]))
+                        {
+                            result.Add(sticks[k]);
+                            result.Add(sticks[j]);
+                            result.Add(sticks[i]);
+                            resultFound = true;
+                            break;
+                        }
+                    }
+                    if (resultFound) break;
+                }
+                if (resultFound) break;
+            }
+            if (result.Count == 0) result.Add(-1);
+            return result;
+        }
+        private static bool checkIfNonDegTriagleCanBeFormed(int minSide, int midSide, int maxSide)
+        {
+            if (minSide + maxSide > midSide
+            && midSide + maxSide > minSide
+            && midSide + minSide > maxSide) return true;
+
+            return false;
+        }
+
+        public static int toys(List<int> weights)
+        {
+            var result = 0;
+            var maxWeightDifAllowed = 4;
+
+            weights.Sort();
+            var tmpWeight = weights[0];
+
+            if (weights.Count == 0) return result;
+            result++;
+
+            for (int i = 1; i < weights.Count; i++)
+            {
+                if (weights[i] - tmpWeight <= maxWeightDifAllowed) { }
+                else
+                {
+                    result++;
+                    tmpWeight = weights[i];
+                }
+            }
+            return result;
+        }
+
+        public static int minimumAbsoluteDifference(List<int> arr)
+        {
+            var result = int.MaxValue;
+            var tmp = 0;
+            arr.Sort();
+            for (int i = 0; i < arr.Count - 1; i++)
+            {
+                tmp = Math.Abs(arr[i] - arr[i + 1]);
+                if (tmp == 0) return 0;
+                if (tmp < result) result = tmp;
+            }
+            return result;
+        }
+
+        public static int minimumAbsoluteDifference2(List<int> arr)
+        {
+            var result = int.MaxValue;
+            var tmp = 0;
+            for (int i = 0; i < arr.Count - 1; i++)
+            {
+                for (int j = i + 1; j < arr.Count; j++)
+                {
+                    tmp = Math.Abs(arr[i] - arr[j]);
+                    if (tmp == 0) return 0;
+                    if (tmp < result) result = tmp;
+                }
+            }
+            return result;
+        }
+
         public static string twoStrings(string s1, string s2)
         {
             bool isCommon = false;
