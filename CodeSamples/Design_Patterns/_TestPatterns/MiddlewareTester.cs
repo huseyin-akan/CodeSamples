@@ -1,4 +1,5 @@
 ﻿using CodeSamples.Design_Patterns.Middleware;
+using CodeSamples.Design_Patterns.Middleware.HusoMiddleware;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,22 @@ namespace CodeSamples.Design_Patterns._TestPatterns
             var pipe = new PipeBuilder(First) //First çalışan ana metot olucak. 
                 .AddPipe(typeof(Try))
                 .AddPipe(typeof(Wrap))
-                .AddPipe(typeof(Wrap)) 
                 .Build();
 
-            pipe("Hello");
-            pipe("World");
-            pipe("This is Husoka!!!");
+            var husoPipe = new HusoPipeBuilder(First) //First çalışan ana metot olucak. 
+                .AddPipe(new HusoGlobalExceptionPipe() )
+                .AddPipe(new HusoLoggerPipe() )
+                .Build();
+
+            Console.WriteLine("PipeBuilder PipeLine'ı çalıştırılıyor." + "\n" + "\n");
+            pipe("Hello"); Console.WriteLine("\n");
+            pipe("World"); Console.WriteLine("\n");
+            pipe("This is Husoka!!!"); Console.WriteLine("\n");
+
+            Console.WriteLine("HusoBuilder PipeLine'ı çalıştırılıyor." + "\n" + "\n");
+            husoPipe("Hello"); Console.WriteLine("\n");
+            husoPipe("World"); Console.WriteLine("\n");
+            husoPipe("This is Husoka!!!"); Console.WriteLine("\n");
         }
 
         void First(string msg)

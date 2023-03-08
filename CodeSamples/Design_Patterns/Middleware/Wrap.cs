@@ -15,9 +15,9 @@ namespace CodeSamples.Design_Patterns.Middleware
 
         public override void Handle(string msg)
         {
-            Console.WriteLine("Starting: " + msg);
+            Console.WriteLine("Wrap Starting: " + msg);
             _action(msg);
-            Console.WriteLine("Ending: " + msg);
+            Console.WriteLine("Wrap Ending: " + msg);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace CodeSamples.Design_Patterns.Middleware
             {
                 Console.WriteLine("Trying : " + msg);
                 _action(msg);
-                Console.WriteLine("Ending : " + msg);
+                Console.WriteLine("Try Ending : " + msg);
             }
             catch (Exception)
             {
