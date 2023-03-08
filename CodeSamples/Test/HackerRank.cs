@@ -9,7 +9,7 @@ namespace CodeSamples.Test
     public static class HackerRank
     {
 
-        public static int findRoses(string flowers, string roses)
+        public static int FindRoses(string flowers, string roses)
         {
             var result = 0;
             var roseTypes = roses.ToCharArray();
