@@ -11,10 +11,10 @@ namespace CodeSamples.Test
     {
         public int C { get; set; }
 
-        
+
         public static Func<int, int> MyFunc = num => num * num;
 
-        public int MyFunc2(int age)  => age * age;
+        public int MyFunc2(int age) => age * age;
 
         public void RaiseEvent()
         {
@@ -24,11 +24,92 @@ namespace CodeSamples.Test
         public void Test(int b)
         {
             int a = 15;
-            Husola(a,b,C);
+            Husola(a, b, C);
             static void Husola(int a2, int b2, int c2)
             {
-                Console.WriteLine( a2 + b2 + c2);
+                Console.WriteLine(a2 + b2 + c2);
             }
+        }
+
+        public Task HusolaAsync()
+        {
+            for (int i = 0; i < 1_000_000_000; i++)
+            {
+
+            }
+            Console.WriteLine("İşlem Bitti");
+            return Task.FromResult(0);
+        }
+
+        public async Task HusolaAsync2()
+        {
+            for (int i = 0; i < 1_000_000_000; i++)
+            {
+
+            }
+            Console.WriteLine("İşlem 2 Bitti");
+        }
+
+        public async Task<string> MakeTeaAsync()
+        {
+            var boilingWater = BoilWaterAsync();
+
+            Console.WriteLine("take the cups out");
+
+            var a = 0;
+            for (int i = 0; i < 100_000_000; i++)
+            {
+                a += i;
+            }
+
+            Console.WriteLine("put tea in cups");
+
+            var water = await boilingWater;
+
+            Console.WriteLine("take the cups out");
+            var tea = $"pour {water} in cups";
+            Console.WriteLine(tea);
+
+            return tea;
+        }
+
+        public async Task<string> BoilWaterAsync()
+        {
+            Console.WriteLine("Start the kettle");
+
+            Console.WriteLine("waiting for the kettle");
+            await Task.Delay(2000);
+
+            Console.WriteLine("kettle finished boiling");
+
+            return "water";
+        }
+
+        public string MakeTea()
+        {
+            var water = BoilWater();
+
+            Console.WriteLine("take the cups out");
+
+            Console.WriteLine("put tea in cups");
+
+            Console.WriteLine("take the cups out");
+            var tea = $"pour {water} in cups";
+            Console.WriteLine(tea);
+
+            return tea;
+        }
+
+        public string BoilWater()
+        {
+            Console.WriteLine("Start the kettle");
+
+            Console.WriteLine("waiting for the kettle");
+            Task.Delay(2000).GetAwaiter().GetResult();
+
+            Console.WriteLine("kettle finished boiling");
+
+            return "water";
         }
 
         public static int KatsayiToplayici(int Baslangic, int Bitis, int Katsayi, int Toplam = 0)
@@ -43,7 +124,7 @@ namespace CodeSamples.Test
             }
             return 0;
         }
-        
+
     }
 
     public class TestValueClass

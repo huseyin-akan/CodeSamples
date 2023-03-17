@@ -3,8 +3,8 @@ using CodeSamples.Design_Patterns.Middleware;
 using CodeSamples.Test;
 using System;
 
-MiddlewareTester mt = new();
-mt.Test();
+Tester t = new();
+t.MakeTea();
 
-
+await t.MakeTeaAsync();
 
