@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeSamples.String
+namespace CodeSamples.Samples.StringSamples
 {
     public static class StringSamples
     {
-        public static void permute(string str,
+        public static void Permute(string str,
                                 int l, int r)
         {
             if (l == r)
@@ -17,14 +17,14 @@ namespace CodeSamples.String
             {
                 for (int i = l; i <= r; i++)
                 {
-                    str = swap(str, l, i);
-                    permute(str, l + 1, r);
-                    str = swap(str, l, i);
+                    str = Swap(str, l, i);
+                    Permute(str, l + 1, r);
+                    str = Swap(str, l, i);
                 }
             }
         }
 
-        public static string swap(string a,
+        public static string Swap(string a,
                                 int i, int j)
         {
             char temp;

@@ -2527,5 +2527,67 @@ namespace CodeSamples.Test
             public int countOfFiveDigits { get; set; }
             public int countOfThreeDigits { get; set; }
         }
+
+        public static long flippingBits(long number)
+        {
+            string binary = Convert.ToString(number, 2);
+            var binary32Bit = ConvertTo32Bit(binary);
+            var flipped32Bit = FlipBits(binary32Bit);
+            return Convert.ToInt64(flipped32Bit, 2);
+        }
+
+        private static string ConvertTo32Bit(string binary)
+        {
+            var numToAdd = 32 - binary.Length;
+            for (var i = 0; i < numToAdd; i++)
+            {
+                binary = "0" + binary;
+            }
+            return binary;
+        }
+
+        private static string FlipBits(string binaryToFlip)
+        {
+            string result = "";
+            for (var i = 0; i < binaryToFlip.Length; i++)
+            {
+                if (binaryToFlip[i] == '0') result += "1";
+                else if (binaryToFlip[i] == '1') result += "0";
+            }
+            return result;
+        }
+
+        public static string gridChallenge(List<string> grid)
+        {
+            SortRows(grid);
+            return CheckIfColumnsAscending(grid) ? "YES" : "NO"; 
+        }
+
+        private static void SortRows(List<string> grid)
+        {
+            for (var i = 0; i < grid.Count; i++)
+            {
+                var chars = grid[i].ToCharArray();
+                var orderChars = chars.OrderBy(x => x).ToArray();
+                grid[i] = new string(orderChars);
+            }
+        }
+
+        private static bool CheckIfColumnsAscending(List<string> grid)
+        {
+            for (int col = 0; col < grid[0].Length; col++)
+            {
+                for (int row = 0; row < grid.Count-1; row++)
+                {
+                    if (grid[row][col] > grid[row+1][col])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
     }
 }

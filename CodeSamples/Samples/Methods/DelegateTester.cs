@@ -1,19 +1,19 @@
-﻿using CodeSamples.Methods.Delegates;
+﻿using CodeSamples.Samples.Methods.Delegates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeSamples.Methods
+namespace CodeSamples.Samples.Methods
 {
     public class DelegateTester
     {
         public void TestDelegate(HusolaDelegate function, string name)
         {
-            Console.WriteLine( "function hasnt been invoked yet");
+            Console.WriteLine("function hasnt been invoked yet");
             function(name);
-            Console.WriteLine( "function has been invoked");
+            Console.WriteLine("function has been invoked");
         }
 
         public void Husolayalim(string name)

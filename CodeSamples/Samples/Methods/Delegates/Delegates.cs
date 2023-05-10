@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeSamples.Methods.Delegates
+namespace CodeSamples.Samples.Methods.Delegates
 {
     public delegate void HusolaDelegate(string name);
 }

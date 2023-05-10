@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeSamples.Number_Samples
+namespace CodeSamples.Samples.NumberSamples
 {
     public static class NumberSamples
     {
@@ -19,7 +19,7 @@ namespace CodeSamples.Number_Samples
             while (max - min > precision)
             {
                 result = (min + max) / 2;
-                if ((result * result) >= number)
+                if (result * result >= number)
                 {
                     max = result;
                 }
@@ -30,8 +30,8 @@ namespace CodeSamples.Number_Samples
                 countOfIteration++;
             }
             Console.WriteLine($"It took {countOfIteration} iterations to find the result");
-            int roundedResult = (int) Math.Round(result);
-            return roundedResult * roundedResult == number ? roundedResult : result ;
+            int roundedResult = (int)Math.Round(result);
+            return roundedResult * roundedResult == number ? roundedResult : result;
         }
 
         public static void CreateUnDublicateList(List<int> input)
@@ -64,7 +64,7 @@ namespace CodeSamples.Number_Samples
 
         public static void CreateUnDublicateList2(List<int> input)
         {
-           input.ToHashSet().ToArray();
+            input.ToHashSet().ToArray();
         }
 
         public static void CreateUnDublicateList3(List<int> input)
@@ -83,9 +83,9 @@ namespace CodeSamples.Number_Samples
                     {
                         break;
                     }
-                    else if(j == foundElements-1)
+                    else if (j == foundElements - 1)
                     {
-                        
+
                     }
                 }
             }

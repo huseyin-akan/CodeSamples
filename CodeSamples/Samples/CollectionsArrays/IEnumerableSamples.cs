@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeSamples.Collections_Arrays
+namespace CodeSamples.Samples.CollectionsArrays
 {
     public class IEnumerableSamples
     {

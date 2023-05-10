@@ -5,13 +5,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace CodeSamples.String_Samples
+namespace CodeSamples.Samples.StringSamples
 {
     public class RegexSamples
     {
         public static bool CheckIfStartsWith(string input, string matchPattern)
         {
-            Regex regex = new("^"+matchPattern);
+            Regex regex = new("^" + matchPattern);
             return regex.IsMatch(input);
         }
 
@@ -40,7 +40,7 @@ namespace CodeSamples.String_Samples
                     special++;
             }
 
-            return upper>1 && lower>1 && number >1 && special > 1;
+            return upper > 1 && lower > 1 && number > 1 && special > 1;
         }
 
         public static bool CheckPasswordHealth3(string password)
